@@ -1,0 +1,12 @@
+.page-header {
+  background-color: red;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.page-header h1 {
+  color: white;
+  font-size: 48px;
+  font-family: "Rum Raisin", sans-serif;
+}

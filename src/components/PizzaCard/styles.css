@@ -1,0 +1,43 @@
+.pizza-box {
+  display: flex;
+  flex-direction: column;
+  background-color: #f0f0f5;
+  width: 24rem;
+  height: 32rem;
+  border-bottom-left-radius: 3%;
+  border-bottom-right-radius: 3%;
+  transition: 0.5s;
+  margin: auto;
+  border: 1px solid transparent;
+}
+
+.pizza-box:hover {
+  /* border: 1px solid #ffb84d; */
+  background-color: #ffb84d23;
+}
+
+.pizza-box img {
+  width: 100%;
+  object-fit: cover;
+  height: 250px;
+}
+
+.pizza-info {
+  padding: 1.6rem;
+}
+
+.pizza-info p {
+  margin-top: 0.8rem;
+}
+
+.pizza-box h3 {
+  font-size: 1.6rem;
+  align-self: flex-end;
+  margin-top: auto;
+  margin-right: 1rem;
+  padding: 1rem;
+}
+
+.pizza-box h3 strong {
+  font-size: 2rem;
+}

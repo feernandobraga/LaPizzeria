@@ -1,0 +1,23 @@
+.order-success {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 7rem);
+  font-family: "Roboto", sans-serif;
+  font-size: 48px;
+  color: #ffb84d;
+  text-align: center;
+}
+
+#buy-more {
+  margin-top: 3rem;
+  background-color: #ffb84d;
+  max-width: 520px;
+  color: white;
+  transition: 0.5s;
+}
+
+#buy-more:hover {
+  background-color: #ffc164;
+}

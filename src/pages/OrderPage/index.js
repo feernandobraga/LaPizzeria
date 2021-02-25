@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import PageHeader from "../../components/PageHeader";
 import PizzaCard from "../../components/PizzaCard";
 import margheritaImg from "../../assets/images/margherita.jpg";
@@ -6,6 +6,7 @@ import bbqBeefImg from "../../assets/images/bbq-beef.jpg";
 import prawnImg from "../../assets/images/prawn.jpg";
 import chickenBaconImg from "../../assets/images/smoky-chicken-bacon.jpg";
 import LocalPizzaRoundedIcon from "@material-ui/icons/LocalPizzaRounded";
+import { useHistory } from "react-router-dom";
 import "./styles.css";
 import {
   Button,
@@ -29,10 +30,7 @@ const OrderPage = () => {
   });
   const [formError, setFormError] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
+  const history = useHistory();
 
   const margherita = {
     title: "Margherita",
@@ -98,27 +96,31 @@ const OrderPage = () => {
     if (selectedPizza === "") {
       setFormError("You must select a Pizza");
     } else {
+      setIsModalOpen(true);
       setFormError("");
       setFormData({
         ...formData,
         selectedPizza,
       });
-      setIsModalOpen(true);
     }
   };
 
   const handleCloseModal = () => {
-    handleOnCancel();
     setIsModalOpen(false);
+  };
+
+  const confirmOrder = () => {
+    setIsModalOpen(false);
+    history.push("/OrderConfirmed");
   };
 
   return (
     <>
-      {/* <Button onClick={() => setIsModalOpen(true)}>Open</Button> */}
       <OrderConfirmationModal
         isModalOpen={isModalOpen}
         orderData={formData}
         closeModal={handleCloseModal}
+        confirmOrder={confirmOrder}
       />
       <PageHeader />
       <main className="pizza-menu">
@@ -207,7 +209,7 @@ const OrderPage = () => {
                 label="Your Name"
                 variant="outlined"
                 name="clientName"
-                required
+                // required
                 value={formData.clientName}
                 onChange={handleOnChange}
               />
@@ -221,7 +223,7 @@ const OrderPage = () => {
                 label="Your Address"
                 variant="outlined"
                 name="clientAddress"
-                required
+                // required
                 value={formData.clientAddress}
                 onChange={handleOnChange}
               />

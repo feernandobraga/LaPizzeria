@@ -1,8 +1,8 @@
 import "./assets/styles/global.css";
-import OrderPage from "./pages/OrderPage";
+import Routes from "./routes";
 
 function App() {
-  return <OrderPage />;
+  return <Routes />;
 }
 
 export default App;

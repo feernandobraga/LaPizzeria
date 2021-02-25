@@ -141,9 +141,12 @@ const OrderPage = () => {
         </Grid>
       </main>
 
+      {/* Main Form */}
       <article>
         <form onSubmit={handleFormSubmit}>
+          {/* Main Grid */}
           <Grid container spacing={3} justify="center">
+            {/* Quantity */}
             <Grid item xs={12} md={4}>
               <TextField
                 id="pizza-quantity"
@@ -155,10 +158,11 @@ const OrderPage = () => {
                 type="number"
                 min="1"
                 onChange={handleOnChange}
-                // required
               />
             </Grid>
+            {/* End Quantity */}
 
+            {/* Pizza Size */}
             <Grid item xs={12} md={4}>
               <FormControl variant="outlined" fullWidth>
                 <InputLabel id="pizza-size">Size</InputLabel>
@@ -175,7 +179,9 @@ const OrderPage = () => {
                 </Select>
               </FormControl>
             </Grid>
+            {/* End Pizza Size */}
 
+            {/* Pizza Crust */}
             <Grid item xs={12} md={4}>
               <FormControl variant="outlined" fullWidth>
                 <InputLabel id="pizza-crust">Crust</InputLabel>
@@ -192,42 +198,52 @@ const OrderPage = () => {
                 </Select>
               </FormControl>
             </Grid>
+            {/* End Pizza Crust */}
 
+            {/* Client Name */}
             <Grid item xs={12}>
               <TextField
                 fullWidth
-                label="Client Name"
+                label="Your Name"
                 variant="outlined"
                 name="clientName"
-                // required
+                required
                 value={formData.clientName}
                 onChange={handleOnChange}
               />
             </Grid>
+            {/* End Client Name */}
 
+            {/* Client Address */}
             <Grid item xs={12}>
               <TextField
                 fullWidth
-                label="Address"
+                label="Your Address"
                 variant="outlined"
                 name="clientAddress"
-                // required
+                required
                 value={formData.clientAddress}
                 onChange={handleOnChange}
               />
             </Grid>
+            {/* End Client Address */}
 
-            <Grid item xs={12} md={6}>
+            {/* Submit Button */}
+            <Grid item xs={12} md={6} id="submit-grid">
               <Button
                 variant="outlined"
                 type="submit"
                 fullWidth
                 id="submit-button"
                 size="large"
+                startIcon={<LocalPizzaRoundedIcon />}
               >
-                <LocalPizzaRoundedIcon /> Place Order
+                Place Order
               </Button>
             </Grid>
+            {/* End Submit Button */}
+
+            {/* Cancel Button */}
             <Grid item xs={12} md={6}>
               <Button
                 variant="outlined"
@@ -240,8 +256,11 @@ const OrderPage = () => {
                 Cancel
               </Button>
             </Grid>
+            {/* Cancel Button */}
+
             {formError !== "" ? <small className="form-error">{formError}</small> : null}
           </Grid>
+          {/* End Main Grid */}
         </form>
       </article>
     </>

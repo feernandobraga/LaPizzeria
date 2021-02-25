@@ -1,6 +1,5 @@
 .pizza-menu {
   display: flex;
-  /* flex: 1 1 auto; */
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -9,10 +8,9 @@
 }
 
 article {
-  /* display: flex; */
   justify-content: center;
   text-align: center;
-  width: 70%;
+  width: 75%;
   margin: auto;
 }
 
@@ -20,12 +18,24 @@ article {
   border-color: white;
   background-color: #ffb84d;
   color: white;
+  transition: 0.4s;
+}
+
+#submit-button:hover {
+  background-color: #ffaf37;
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.45);
 }
 
 form {
   margin-bottom: 3rem;
 }
 
+Button {
+  height: 3.2rem;
+}
+
 .form-error {
+  margin-top: 1rem;
   color: red;
+  font-family: "Roboto", sans-serif;
 }

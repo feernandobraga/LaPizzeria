@@ -1,9 +1,27 @@
 .pizza-menu {
   display: flex;
-  flex: 1 1 auto;
+  /* flex: 1 1 auto; */
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   width: 80%;
+  margin: 2rem auto;
+}
+
+article {
+  display: flex;
+  width: 36%;
   margin: auto;
-  margin-top: 2rem;
+}
+
+#submit-button {
+  /* margin: auto; */
+  /* color: green; */
+  border-color: white;
+  background-color: #ffb84d;
+  color: white;
+}
+
+.form-error {
+  color: red;
 }

@@ -9,17 +9,21 @@
 }
 
 article {
-  display: flex;
-  width: 36%;
+  /* display: flex; */
+  justify-content: center;
+  text-align: center;
+  width: 70%;
   margin: auto;
 }
 
 #submit-button {
-  /* margin: auto; */
-  /* color: green; */
   border-color: white;
   background-color: #ffb84d;
   color: white;
+}
+
+form {
+  margin-bottom: 3rem;
 }
 
 .form-error {

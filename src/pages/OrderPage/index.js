@@ -5,6 +5,7 @@ import margheritaImg from "../../assets/images/margherita.jpg";
 import bbqBeefImg from "../../assets/images/bbq-beef.jpg";
 import prawnImg from "../../assets/images/prawn.jpg";
 import chickenBaconImg from "../../assets/images/smoky-chicken-bacon.jpg";
+import LocalPizzaRoundedIcon from "@material-ui/icons/LocalPizzaRounded";
 import "./styles.css";
 import {
   Button,
@@ -15,6 +16,7 @@ import {
   Select,
   TextField,
 } from "@material-ui/core";
+import OrderConfirmationModal from "../../components/OrderConfirmationModal";
 
 const OrderPage = () => {
   const [selectedPizza, setSelectedPizza] = useState("");
@@ -22,10 +24,11 @@ const OrderPage = () => {
     quantity: 1,
     size: "Medium",
     crust: "Stuffed",
+    clientName: "",
+    clientAddress: "",
   });
   const [formError, setFormError] = useState("");
-  const [pizzaSize, setPizzaSite] = useState("Small");
-  // const [formHasErrors, setFormHasErrors] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     console.log(formData);
@@ -65,13 +68,28 @@ const OrderPage = () => {
 
   const handleSelectPizza = (pizza) => {
     setSelectedPizza(pizza);
-    // console.log(`Pizza selected ${pizza}`);
   };
 
   const handleOnChange = (event) => {
+    // prevents the user to set quantity < 1
+    if (event.target.name === "quantity" && event.target.value < 1) {
+      return;
+    }
     setFormData({
       ...formData,
       [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleOnCancel = () => {
+    setSelectedPizza("");
+    setFormError("");
+    setFormData({
+      quantity: 1,
+      size: "Medium",
+      crust: "Stuffed",
+      clientName: "",
+      clientAddress: "",
     });
   };
 
@@ -85,11 +103,23 @@ const OrderPage = () => {
         ...formData,
         selectedPizza,
       });
+      setIsModalOpen(true);
     }
+  };
+
+  const handleCloseModal = () => {
+    handleOnCancel();
+    setIsModalOpen(false);
   };
 
   return (
     <>
+      {/* <Button onClick={() => setIsModalOpen(true)}>Open</Button> */}
+      <OrderConfirmationModal
+        isModalOpen={isModalOpen}
+        orderData={formData}
+        closeModal={handleCloseModal}
+      />
       <PageHeader />
       <main className="pizza-menu">
         <Grid container spacing={3} direction="row" justify="center" alignItems="center">
@@ -123,6 +153,7 @@ const OrderPage = () => {
                 name="quantity"
                 value={formData.quantity}
                 type="number"
+                min="1"
                 onChange={handleOnChange}
                 // required
               />
@@ -164,58 +195,52 @@ const OrderPage = () => {
 
             <Grid item xs={12}>
               <TextField
-                // id="client-name"
                 fullWidth
                 label="Client Name"
                 variant="outlined"
                 name="clientName"
                 // required
-                // onChange={handleOnChange}
-                // error={!!formErrors.clientName}
-                // helperText={formErrors.clientName}
-                // onBlur={validateForm}
+                value={formData.clientName}
+                onChange={handleOnChange}
               />
             </Grid>
 
             <Grid item xs={12}>
               <TextField
-                // id="outlined-basic"
                 fullWidth
                 label="Address"
                 variant="outlined"
-                name="Address"
+                name="clientAddress"
                 // required
-                // onChange={handleOnChange}
-                // error={!!formErrors.clientName}
-                // helperText={formErrors.clientName}
-                // onBlur={validateForm}
+                value={formData.clientAddress}
+                onChange={handleOnChange}
               />
             </Grid>
 
-            <Grid item sm={12} md={6}>
+            <Grid item xs={12} md={6}>
               <Button
                 variant="outlined"
-                // color="tertiary"
                 type="submit"
                 fullWidth
                 id="submit-button"
                 size="large"
               >
-                Submit
+                <LocalPizzaRoundedIcon /> Place Order
               </Button>
             </Grid>
-            <Grid item sm={12} md={6}>
+            <Grid item xs={12} md={6}>
               <Button
                 variant="outlined"
+                name="cancel"
                 color="secondary"
-                type="submit"
                 fullWidth
                 size="large"
+                onClick={handleOnCancel}
               >
                 Cancel
               </Button>
             </Grid>
-            {formError ? <small className="form-error">{formError}</small> : null}
+            {formError !== "" ? <small className="form-error">{formError}</small> : null}
           </Grid>
         </form>
       </article>

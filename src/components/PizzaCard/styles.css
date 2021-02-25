@@ -9,6 +9,7 @@
   transition: 0.5s;
   margin: auto;
   border: 1px solid transparent;
+  font-family: "Roboto", sans-serif;
 }
 
 .pizza-box:hover {
@@ -36,6 +37,7 @@
   margin-top: auto;
   margin-right: 1rem;
   padding: 1rem;
+  color: #39b100;
 }
 
 .pizza-box h3 strong {

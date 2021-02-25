@@ -17,7 +17,7 @@ const PizzaCard = (props) => {
         <p>{description}</p>
       </div>
       <h3>
-        $<strong>{price}</strong>
+        $ <strong>{price}</strong>
       </h3>
     </div>
   );
